@@ -1,0 +1,37 @@
+{%extends 'base.html'%}
+{% load bootstrap4%}
+{% block content %}
+<br><br><br>
+<div class="container-fluid" style="background-image:url('https://images.unsplash.com/32/Mc8kW4x9Q3aRR3RkP5Im_IMG_4417.jpg?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YmFja2dyb3VuZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60');background-size: cover; font-family: 'Cookie', cursive;font-size: 2.0em;">
+    <div class="row"><br>
+      <!-- Empty div -->
+      <div class="col-md-4"></div>
+      <div class="col-md-6"style="margin-left:25%">
+        <div class="panel panel-default">
+  
+          <div class="panel-heading">
+            <h3 class="text-center"><strong>Create A Profile</strong></h3>
+          </div>
+          <div class="panel-body">
+  
+            <form  action="{%url 'create_profile'%}" method="post"enctype="multipart/form-data">
+              {% csrf_token %}
+              {% bootstrap_form form%}
+  
+              <div class="form-group">
+                <input type="submit" style="color:black;font-size: 0.7em;" class="btn btn-warning btn-sm" value="Create Profile">
+              </div>
+    
+            </form>
+  
+          </div>
+  
+        </div>
+  
+      </div>
+      <!-- empty div -->
+      <div class="col-md-4"></div>
+    </div>
+  </div>
+  
+{% endblock %}

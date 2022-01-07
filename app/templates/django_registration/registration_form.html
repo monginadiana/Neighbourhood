@@ -1,0 +1,36 @@
+{%extends "registration/base.html"%} 
+{% load bootstrap4 %}
+{% block content %}
+<div class="container-fluid" style="background-color:grey;">
+  <div class="row">
+    <!-- Empty div -->
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      {% if form.errors %}
+        <p class="text-danger"> Some Information Might be Incorrect </p>
+      {% endif %}
+      <div class="card mt-5">
+        <div class="card-header">
+          <h3 style="color:Orange; font-style:'Libre Bodoni', sans-serif; font-weight:800;">Register</h3>
+        </div>
+        <div class="card-body">
+          <form style="color:Orange; font-style:'Libre Bodoni', sans-serif; font-weight:800;" action="/accounts/register/" method="post">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <div class="form-group ">
+              <input style="color:black; font-style:'Libre Bodoni', sans-serif; font-weight:800;" type="submit" class="btn btn-sm btn-warning" value="Create Account">
+            </div>
+            <input type="hidden" name="next" value="{{next}}">
+          </form>
+          <p style= "font-weight:800"  class="mt-5">Already Have an Account? <a style="color:Orange; font-style:'Libre Bodoni', sans-serif; font-weight:800;" href="/accounts/login/" class="text-primary">Login</a></p>
+        </div>
+      </div>
+
+    </div>
+    <!-- empty div -->
+    <div class="col-md-4"></div>
+  </div>
+</div>
+
+{% endblock %}
+

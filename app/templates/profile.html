@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+<br><br><br><br>
+<div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    {% if profile.prof_photo %}
+                    <img src="{{profile.prof_photo.url}}" alt="" class="card-img-top">
+                    {%else%}
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3aV6aq2LNho3SY8cDICGVEdRweW5u9IaZ_w&usqp=CAU"
+                        class="card-img-top" alt="My profile picture">
+                    {% endif %}
+                    <div class="card-body text-center">
+                        <p>{{profile.user.username }}</p>
+                        <p>
+                            {% if profile.bio %}
+                            {{ profile.bio }}
+                            {% else %}
+                            <span class="text-danger">No about me</span>
+                            {% endif %}
+                        </p>
+                        <h6>Joined on: {{ user.date_joined }}</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            {% if request.user is user %}  
+              <a href="{%url 'update_profile' user.id %}" style="color:black;font-size: 0.7em;" class="btn btn-warning btn-sm">
+                Edit Profile
+              </a>
+            {% endif %}
+      </div>
+      {% comment %} <div class="col-md-4">  
+          <a href="{%url 'create_hood' %}" style="color:black;font-size: 0.7em;" class="btn btn-warning btn-sm">
+            Create Hood
+          </a>
+  </div> {% endcomment %}
+</div>
+
+
+{% endblock %}

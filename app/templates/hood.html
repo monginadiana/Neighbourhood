@@ -1,0 +1,16 @@
+{%extends 'base.html'%}
+
+{% block content %}
+{{block.super}}
+
+{%for neighbor in hood%}
+
+<img src="{{neighbor.image.url}}" alt="" class="prof-pic">
+<a href="{%url 'single_hood' neighbor.neighbourHood_name %}"><p class="name">{{neighbor.neighbourHood_name}}</p></a>
+{{ neighbor.location }}
+{{ neighbor.occupants_count }}
+
+
+{%endfor%}
+
+{% endblock %}
