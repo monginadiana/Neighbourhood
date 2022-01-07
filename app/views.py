@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 
 # Create your views here.
 from django.http.response import HttpResponseRedirect
@@ -79,3 +79,16 @@ def single_hood(request,neighbourHood_name):
     hood = NeighbourHood.objects.get(neighbourHood_name=neighbourHood_name)
     
     return render(request,'single_hood.html',{'hood':hood})
+
+def join_hood(request,id):
+    neighborhood = get_object_or_404(NeighbourHood, id=id)
+    
+    request.user.profile.neighborhood = neighborhood
+    request.user.profile.save()
+    return redirect('hood')
+
+def leave_hood(request, id):
+    hood = get_object_or_404(NeighbourHood, id=id)
+    request.user.profile.neighborhood = None
+    request.user.profile.save()
+    return redirect('hood')
