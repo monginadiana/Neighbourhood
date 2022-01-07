@@ -7,9 +7,19 @@
 
 <img src="{{neighbor.image.url}}" alt="" class="prof-pic">
 <a href="{%url 'single_hood' neighbor.neighbourHood_name %}"><p class="name">{{neighbor.neighbourHood_name}}</p></a>
-{{ neighbor.location }}
-{{ neighbor.occupants_count }}
+<p>{{neighbor.members.count}} Member{{neighbor.members.count|pluralize}}</p>
+<p>{{ neighbor.location }}</p>
+<p>{{ neighbor.occupants_count }}</p>
 
+{% if request.user.profile.neighborhood == neighbor %}
+            <a href="{% url 'leave_hood' neighbor.id %}" class="btn btn-outline-danger btn-sm">Leave at will</a>
+            
+            <a href="{%url 'single_hood' neighbor.neighbourHood_name %}" class="btn btn-outline-success btn-sm" style="float: right">Explore {{neighbor.neighbourHood_name}}
+          </a>
+            {% elif not request.user.profile.neighborhood %}
+            <a href="{% url 'join_hood' neighbor.id %}" class="btn btn-info btn-sm">Join Hood</a>
+            {% endif %}
+            </div>
 
 {%endfor%}
 
