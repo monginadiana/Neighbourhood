@@ -58,17 +58,17 @@ class Profile(models.Model):
     created_on = models.DateTimeField(auto_now_add=True,null=True)
     updated_on = models.DateTimeField(auto_now=True,null=True)
     
-    def save_profile(self):
-        self.save()
-    
-    def create_profile(self):
-        self.save()
-    
-    def update_profile(self):
-        self.save()
-   
-    def delete_profile(self):
-        self.delete()
+    def __str__(self):
+        return f'{self.user.username} profile'
+
+    @receiver(post_save, sender=User)
+    def create_user_profile(sender, instance, created, **kwargs):
+        if created:
+            Profile.objects.create(user=instance)
+
+    @receiver(post_save, sender=User)
+    def save_user_profile(sender, instance, **kwargs):
+        instance.profile.save()
     
     @classmethod
     def filter_by_id(cls, id):
