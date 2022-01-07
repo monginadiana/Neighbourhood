@@ -1,4 +1,5 @@
-
+from django.dispatch import receiver
+from django.db.models.signals import post_save
 from django.db import models
 from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import User
@@ -48,7 +49,7 @@ class NeighbourHood(models.Model):
         return self.name
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile',null=True)
     profile_photo = CloudinaryField("image",null=True, blank=True)
     bio = models.TextField(max_length=300)
     location = models.ForeignKey(Location, on_delete=models.CASCADE,null=True)
