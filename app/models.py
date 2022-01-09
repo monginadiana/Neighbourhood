@@ -4,6 +4,7 @@ from django.db import models
 from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import User
 
+
 # Create your models here.
 
 class Location(models.Model):
@@ -24,6 +25,8 @@ class NeighbourHood(models.Model):
     admin = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
     created_on = models.DateTimeField(auto_now_add=True,null=True)
     updated_on = models.DateTimeField(auto_now=True,null=True)
+    health_tell = models.IntegerField(null=True, blank=True)
+    police_number = models.IntegerField(null=True, blank=True)
     
     def create_neigbourhood(self):
         self.save()
@@ -78,7 +81,7 @@ class Profile(models.Model):
         return self.user.username
     
 class Business(models.Model):
-    business_name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50)
     email = models.EmailField(max_length=50)
     description = models.TextField(blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -86,6 +89,12 @@ class Business(models.Model):
     neighborhood = models.ForeignKey(NeighbourHood, on_delete=models.CASCADE)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        ordering = ['-pk']
+
+    def __str__(self):
+        return f'{self.name} Business'
 
     def create_business(self):
         self.save()
@@ -106,5 +115,43 @@ class Business(models.Model):
         business = cls.objects.get(id=id)
         return business
 
-    def _str_(self):
-        return self.business_name
+class Post(models.Model):
+    title = models.CharField(max_length=50,null=True)
+    content = models.TextField(blank=True, null=True)
+    photo = CloudinaryField("image",blank=True,null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
+    location = models.ForeignKey(Location, on_delete=models.CASCADE,null=True)
+    neighborhood = models.ForeignKey(NeighbourHood, on_delete=models.CASCADE, null=True)
+    created_on = models.DateTimeField(auto_now_add=True,null=True)
+    updated_on = models.DateTimeField(auto_now=True,null=True)
+    
+    class Meta:
+        ordering = ['-pk']
+        
+    def __str__(self):
+        return f'{self.title} Post'
+    
+    def create_post(self):
+        self.save()
+
+    
+    def delete_post(self):
+        self.delete()
+
+    
+    def update_post(self):
+        self.update()
+
+    
+    @classmethod
+    def search_by_title(cls, search_term):
+        post = cls.objects.filter(title__icontains=search_term)
+        return post
+
+    
+    @classmethod
+    def find_post(cls, id):
+        post = cls.objects.get(id=id)
+        return post
+
+    
