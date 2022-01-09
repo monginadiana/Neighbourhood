@@ -1,4 +1,4 @@
-from .models import NeighbourHood, Profile
+from .models import Business, NeighbourHood, Profile
 from django.forms import ModelForm
 from django import forms
 
@@ -18,3 +18,8 @@ class CreateNeighForm(forms.ModelForm):
     class Meta:
         model = NeighbourHood
         exclude = ['admin','occupants_count']
+
+class BusinessForm(forms.ModelForm):
+    class Meta:
+        model=Business
+        fields=['business_name','email','description','location','neighborhood']
