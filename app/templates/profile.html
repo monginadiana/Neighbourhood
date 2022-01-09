@@ -5,17 +5,18 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="card">
-                    {% if profile.prof_photo %}
-                    <img src="{{profile.prof_photo.url}}" alt="" class="card-img-top">
+                    {% if profile.profile_photo %}
+                    <img src="{{profile.profile_photo.url}}" alt="" class="card-img-top">
                     {%else%}
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3aV6aq2LNho3SY8cDICGVEdRweW5u9IaZ_w&usqp=CAU"
                         class="card-img-top" alt="My profile picture">
                     {% endif %}
                     <div class="card-body text-center">
-                        <p>{{profile.user.username }}</p>
+                        <p style="font-size:bold; font-weight:800;text-transform:capitalize">Username:{{profile.user.username }}</p>
                         <p>
                             {% if profile.bio %}
-                            {{ profile.bio }}
+                            <P>Bio:{{ profile.bio }} </P>
+                            
                             {% else %}
                             <span class="text-danger">No about me</span>
                             {% endif %}
