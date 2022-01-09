@@ -5,7 +5,7 @@ from django.http.response import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from .models import *
-from app.forms import CreateNeighForm, ProfileForm, UpdateProfileForm
+from app.forms import BusinessForm, CreateNeighForm, ProfileForm, UpdateProfileForm
 from app.models import Profile
 
 @login_required(login_url="/accounts/login/")
@@ -92,3 +92,45 @@ def leave_hood(request, id):
     request.user.profile.neighborhood = None
     request.user.profile.save()
     return redirect('hood')
+
+@login_required(login_url="/accounts/login/")
+def create_business(request):
+    current_user = request.user
+    if request.method == "POST":
+        
+        form=BusinessForm(request.POST,request.FILES)
+
+        if form.is_valid():
+            business=form.save(commit=False)
+            business.user=current_user
+            business.hood= hoods
+            business.save()
+        return HttpResponseRedirect('/businesses')
+    else:
+        form=BusinessForm()
+    return render (request,'business_form.html', {'form': form, 'profile': profile})
+
+
+
+
+@login_required(login_url="/accounts/login/")
+def businesses(request):
+    current_user = request.user
+    businesses = Business.objects.all().order_by('-id')
+    
+    profile = Profile.objects.filter(user_id=current_user.id).first()
+
+    if profile is None:
+        profile = Profile.objects.filter(
+            user_id=current_user.id).first()
+        
+        locations = Location.objects.all()
+        neighborhood = NeighbourHood.objects.all()
+        
+        businesses = Business.objects.all().order_by('-id')
+        
+        return render(request, "profile.html", {"danger": "Update Profile", "locations": locations, "neighborhood": neighborhood, "businesses": businesses})
+    else:
+        neighborhood = profile.neighborhood
+        businesses = Business.objects.all().order_by('-id')
+        return render(request, "business.html", {"businesses": businesses})
