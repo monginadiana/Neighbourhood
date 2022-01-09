@@ -77,8 +77,9 @@ def hoods(request):
 @login_required(login_url='/accounts/login/')
 def single_hood(request,neighbourHood_name):
     hood = NeighbourHood.objects.get(neighbourHood_name=neighbourHood_name)
-    
-    return render(request,'single_hood.html',{'hood':hood})
+    posts = Post.objects.filter(neighborhood=hood)
+    businesses = Business.objects.filter(neighborhood=hood)
+    return render(request,'single_hood.html',{'hood':hood, 'posts':posts, 'businesses':businesses})
 
 def join_hood(request,id):
     neighborhood = get_object_or_404(NeighbourHood, id=id)
