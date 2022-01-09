@@ -8,20 +8,19 @@
     <div class="container mt-5">
 
         
-
             <h2 class="text-center headings">Businesses Within Your Neighborhood: <br>{{hood.neighbourHood_name}}
             </h2>
             <div class="row">
             
-            {% for biz in businesses %}
-            <div class="col-md-4">
+            {% for business in businesses %}
+            <div class="col-md-4 text-dark">
                 <div class="card" >
                     <div class="card-body">
-                        <h5 class="card-title text-capitalize">{{ biz.business_name }}</h5>
-                        <p>{{ biz.description }}</p>
-                        <p>{{ biz.neighborhood }}</p>
-                        <p>{{ biz.location }}</p>
-                        <a href="malto:{{ biz.email }}" class="card-link">Email: <span class="text-bold text-primary">{{ biz.email }}</span> </a>
+                        <h5 class="card-title text-capitalize">{{ business.name }}</h5>
+                        <p>{{ business.description }}</p>
+                        <p>{{ business.neighborhood }}</p>
+                        <p>{{ business.location }}</p>
+                        <a href="malto:{{ business.email }}" class="card-link">Email: <span class="text-bold text-primary">{{ business.email }}</span> </a>
                        <br>
                     </div>
                   </div>
@@ -38,5 +37,6 @@
 
         </div>
     </div>
+   
 </section>
 {% endblock %}

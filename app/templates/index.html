@@ -1,9 +1,23 @@
 {%extends 'base.html'%}
 {% load static%}
 {% block content %}
-{{block.super}}
+<style>
+    body{
+        background-image: url('https://raw.githubusercontent.com/Owiti-Charles/HoodWatch/master/static/images/bg.jpg'); 
+        margin-top:10px;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
 
-<div class="container text-center">
-<h1>Heyy Neighbour</h1>
+{{block.super}}
+<div class="container" >
+    <div class="text-light text-center" style="margin-top:15%">
+        <h1>Welcome to Hood254</h1>
+        <h5 style="margin-top:6%">Get Started by joining a hood today</h5>
+        <a href="{% url 'hood' %}" class="btn btn-sm btn-info mt-4">Join Hood</a>
+    </div>
+
 </div>
+
 {% endblock %}
