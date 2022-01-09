@@ -1,26 +1,73 @@
 {%extends 'base.html'%}
+{% load static %}
+ {% block content %}
+ <style>
+  .let{
+    border-radius: 5px;
+    padding: 5px 5px;
+    margin: 1rem;
+    background-color:red;
+    color: white;
+    align-items: center;
+}
+</style> 
+ {{block.super}}
+<a href="{% url 'create_hood' %}" class="btn join black font-weight-bol btn-sm"
+  ><i class="fas fa-plus"></i> Create Hood</a>
+  <section class="hood" id="posts main">
+    <div class="container mt-5" style="gap: 15px;">
+        
+        <div class="row mt-4" id="">
+          {%for neighbor in hood%}
+            <div class="col-md-12 col-md-6 col-lg-6 p-3" id="main" style="gap: 15px;">
+                <div class="card mb-4" id="">
+                  <img src="{{neighbor.image.url}}" class="card-img-top responsive" alt=" " height="auto" width="100"/>
+                        
+                    <div class="card-body ">
+                        <p class="fade-item mb-2">{{neighbor.neighbourHood_name.name|title}}</p>
+                        <div class="d-flex justify-content-between location-date">
+                            <div>
+                            <p class="text-capitalise">{{neighbor.location}}</p>
+                            </div>
+                            <div>
+                            <p class="text-capitalise">{{neighbor.description}}</p>
+                          </div>
+                          <div class=" pt-3 ">
+                            {% if request.user.profile.neighborhood == neighbor %}
+                            <a    
+                              href="{% url 'single_hood' neighbor.neighbourHood_name %}"
+                              class="btn btn-outline-warning font-weight-bold btn-sm mb-2"
+                              >View Hood</a>
+                            <a
+                              href="{% url 'leave_hood' neighbor.id %}"
+                              class=" btn-outline-warning font-weight-bold btn-sm"
+                              >Leave Hood</a>
+                            {% elif not request.user.profile.neighborhood %}
+                            <a
+                              href="{% url  'join_hood' neighbor.id %}"
+                              class="btn join black font-weight-bold btn-sm let"
+                              >Join Hood</a>
+                            {% endif %}
+                          </div>
+                        </div>
+                        
 
-{% block content %}
-{{block.super}}
-
-{%for neighbor in hood%}
-
-<img src="{{neighbor.image.url}}" alt="" class="prof-pic">
-<a href="{%url 'single_hood' neighbor.neighbourHood_name %}"><p class="name">{{neighbor.neighbourHood_name}}</p></a>
-<p>{{neighbor.members.count}} Member{{neighbor.members.count|pluralize}}</p>
-<p>{{ neighbor.location }}</p>
-<p>{{ neighbor.occupants_count }}</p>
-
-{% if request.user.profile.neighborhood == neighbor %}
-            <a href="{% url 'leave_hood' neighbor.id %}" class="btn btn-outline-danger btn-sm">Leave at will</a>
-            
-            <a href="{%url 'single_hood' neighbor.neighbourHood_name %}" class="btn btn-outline-success btn-sm" style="float: right">Explore {{neighbor.neighbourHood_name}}
-          </a>
-            {% elif not request.user.profile.neighborhood %}
-            <a href="{% url 'join_hood' neighbor.id %}" class="btn btn-info btn-sm">Join Hood</a>
-            {% endif %}
+                    </div>
+                </div>
             </div>
+            {% endfor %}
 
-{%endfor%}
+          </div>
 
-{% endblock %}
+        </div>
+        <a
+          href="{%url 'create_post'  %}" style="color: black; font-size: 0.7em"
+        class="btn btn-warning btn-sm">
+          Create Post
+        </a>
+        {% endblock %}
+
+
+
+
+
