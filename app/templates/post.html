@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="blog-section" id="posts">
+    <div class="container mt-5">
+        <h2 class="text-center mb-5 headings">Latest Posts</h2>
+        <div class="row mt-4">
+
+           
+
+            {% for post in posts %}
+            
+
+            <div class="col-md-4">
+                <img src="{{ post.photo.url }}" alt="" style="border-radius: 50%; width: 50%; height: auto;">
+
+                <div class="card mb-4 post-card">
+                    
+                    <div class="card-body">
+                        
+                            <h6 class="">{{ post.title }}</h6>
+                            <p class="">{{ post.content }}</p>
+                            <div >
+                                <div>
+                                    <p class="text-uppercase badge rounded-pill text-dark text-capitalize">{{ post.location }}</p>
+                                </div>
+                                <div>
+                                    <p>{{ post.created_on|date }}</p>
+                                </div>
+                            </div>
+                            <div class="">
+                                <div class="">
+                                   
+                                    <div>
+                                        <p class="author mt-2 text-capitalize">
+                                            <strong>By <strong>
+                                                </strong>{{ post.user }}</strong>
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+            
+            {% empty %}
+            <div class="col-md-12">
+                <div class="card mb-4 post-card">
+                    <div class="card-body text-center">
+                        <h4 class="text-danger">No Posts within Your Area!!!</h4>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+
+
+
+
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}
