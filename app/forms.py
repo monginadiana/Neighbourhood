@@ -1,4 +1,4 @@
-from .models import Business, NeighbourHood, Profile
+from .models import Business, NeighbourHood, Post, Profile
 from django.forms import ModelForm
 from django import forms
 
@@ -22,4 +22,9 @@ class CreateNeighForm(forms.ModelForm):
 class BusinessForm(forms.ModelForm):
     class Meta:
         model=Business
-        fields=['business_name','email','description','location','neighborhood']
+        fields=['name','email','description','location','neighborhood']
+        
+class PostForm(forms.ModelForm):
+    class Meta:
+        model=Post
+        fields=['title','content','photo','location','neighborhood']
