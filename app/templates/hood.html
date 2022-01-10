@@ -5,42 +5,44 @@
   .let{
     border-radius: 5px;
     padding: 5px 5px;
-    margin: 1rem;
+
     background-color:red;
     color: white;
     align-items: center;
 }
 </style> 
  {{block.super}}
-<a href="{% url 'create_hood' %}" class="btn join black font-weight-bol btn-sm"
-  ><i class="fas fa-plus"></i> Create Hood</a>
+
+
   <section class="hood" id="posts main">
-    <div class="container mt-5" style="gap: 15px;">
-        
-        <div class="row mt-4" id="">
+    
+    <div class="container mt-3 mb-2" >
+      <a href="{% url 'create_hood' %}" class="btn btn-sm btn-info ml-2 mb-2 t"
+      ><i  class="fas fa-plus"></i> Create Hood</a>
+        <div class="row mt-1" id="">
           {%for neighbor in hood%}
             <div class="col-md-12 col-md-6 col-lg-6 p-3" id="main" style="gap: 15px;">
                 <div class="card mb-4" id="">
-                  <img src="{{neighbor.image.url}}" class="card-img-top responsive" alt=" " height="auto" width="100"/>
+                  <img src="{{neighbor.image.url}}" class="card-img-top " alt=" " height="auto" width="100"/>
                         
                     <div class="card-body ">
-                        <p class="fade-item mb-2">{{neighbor.neighbourHood_name.name|title}}</p>
+                        <p class="fade-item mb-2" style="font-size: 12px font-weight: bold ;">{{neighbor.neighbourHood_name|title}}</p>
                         <div class="d-flex justify-content-between location-date">
                             <div>
-                            <p class="text-capitalise">{{neighbor.location}}</p>
+                            <p class="">{{neighbor.location}}</p>
                             </div>
                             <div>
-                            <p class="text-capitalise">{{neighbor.description}}</p>
+                            <p class="">{{neighbor.description}}</p>
                           </div>
-                          <div class=" pt-3 ">
+                          <div class=" pt-3 mr-8">
                             {% if request.user.profile.neighborhood == neighbor %}
                             <a    
                               href="{% url 'single_hood' neighbor.neighbourHood_name %}"
-                              class="btn btn-outline-warning font-weight-bold btn-sm mb-2"
+                              class="btn btn-sm btn-info font-weight-bold btn-sm "
                               >View Hood</a>
                             <a
                               href="{% url 'leave_hood' neighbor.id %}"
-                              class=" btn-outline-warning font-weight-bold btn-sm"
+                              class=" btn btn-sm btn-danger font-weight-bold btn-sm"
                               >Leave Hood</a>
                             {% elif not request.user.profile.neighborhood %}
                             <a
