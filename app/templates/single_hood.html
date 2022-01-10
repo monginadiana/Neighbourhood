@@ -27,82 +27,98 @@
           </div>
         
     </div>
-    {% for business in businesses %}
-            <div class="col-md-4 text-dark">
-                <div class="card" >
-                    <div class="card-body">
-                        <h5 class="card-title text-capitalize">{{ business.name }}</h5>
-                        <p>{{ business.description }}</p>
-                        <p>{{ business.neighborhood }}</p>
-                        <p>{{ business.location }}</p>
-                        <a href="malto:{{ business.email }}" class="card-link">Email: <span class="text-bold text-primary">{{ business.email }}</span> </a>
-                       <br>
-                    </div>
-                  </div>
+    <h2 style= "font-style:italic;"class="text-center text-info">Businesses in This Neighborhood</h2>
+        <div class="col-md-12">
+            <div class="col-md-6">
+                <a href="{%url 'create_business'  %}"  class="btn btn-outline-dark bg-info text-white rounded-pill mr-4">
+                 CREATE Business
+                </a>
             </div>
-
-            {% empty %}
-            <div class="col-md-12">
-                <div class="card mb-4 post-card">
-                    <div class="card-body text-center">
-                        <h6 class="fade-item mb-2 text-danger">No businesses found within your Neighborhood!!</h6>
-                    </div>
-                </div>
-            {% endfor %}
-            {% for post in posts %}
-            
-
-            <div class="col-md-4">
-                <img src="{{ post.photo.url }}" alt="" style="border-radius: 50%; width: 50%; height: auto;">
-
-                <div class="card mb-4 post-card">
-                    
-                    <div class="card-body">
-                        
-                            <h6 class="">{{ post.title }}</h6>
-                            <p class="">{{ post.content }}</p>
-                            <div >
-                                <div>
-                                    <p class="text-uppercase badge rounded-pill text-dark text-capitalize">{{ post.location }}</p>
-                                </div>
-                                <div>
-                                    <p>{{ post.created_on|date }}</p>
-                                </div>
-                            </div>
-                            <div class="">
-                                <div class="">
-                                   
-                                    <div>
-                                        <p class="author mt-2 text-capitalize">
-                                            <strong>By <strong>
-                                                </strong>{{ post.user }}</strong>
-                                        </p>
-                                    </div>
-                                </div>
-                                
-                            </div>
-                        
-                    </div>
-                </div>
+            <div class="card m-3">
+                <table class="table">
+                    <thead>
+                        <tr>
+                           
+                            <th scope="col">Name</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Location</th>
+                            <th scope="col">Neighborhood</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for business in businesses %}
+                        <tr>
+                            <td class="b-text"><h4>{{ business.name }}</h4></td>
+                            <td>{{ business.description }}</td>
+                            <td>{{ business.email }}</td>
+                            <td>{{ business.location }}</td>
+                            <td>
+                                <span class="">
+                                    {{ business.neighborhood }}
+                                </span>
+                            </td>
+                            <td>{{ business.created_on|date }}</td>
+                            <td>
+                                <a class="text-danger" href="">
+                                    <i class="fa fa-trash-alt text-danger"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="4" class="text-center text-danger">No Businesses Created!</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
-
-            
-            {% empty %}
-            <div class="col-md-12">
-                <div class="card mb-4 post-card">
-                    <div class="card-body text-center">
-                        <h4 class="text-danger">No Posts within Your Area!!!</h4>
-                    </div>
-                </div>
+        </div>
+    </div>
+    <h2 style= "font-style:italic;"class="text-center text-info">Posts in This Neighborhood</h2></b>
+    <div class="col-md-12 links">
+        <div class="col-md-6">
+            <a href="{%url 'create_post'  %}"  class="btn btn-outline-dark bg-info text-white rounded-pill">
+             Add Post
+            </a>
+        </div>
+        <br>
+        <div class="card">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">Content</th>
+                        <th scope="col">Location</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for post in posts %}
+                    <tr>
+                        <td>{{ post.title }}</td>
+                        <td>{{ post.content }}</td>
+                        <td><span class="badge rounded-pill bg-secondary text-white">
+                                {{ post.location }}
+                            </span></td>
+                            <td>
+                                <a class="text-danger" href="">
+                                    <i class="fa fa-trash-alt text-danger"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="5" class="text-center text-danger">No Posts Created!</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
-            {% endfor %}
+        </div>
 
 
-
-
-   
-</div>
-
-
-
+    
 {% endblock %}
