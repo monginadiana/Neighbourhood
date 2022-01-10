@@ -1,17 +1,17 @@
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
-    <a style="font-style:italics;"class="navbar-brand neig text-center " href="{% url 'index' %}">Neighbourhoods </a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-warning ">
+    <a style="font-style:italics;"class="navbar-brand neig text-center text-dark" href="{% url 'index' %}">Neighbourhoods </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link " href="{% url 'hood' %}">Hoods <span class="sr-only">(current)</span></a>
+          <a class="nav-link text-dark" href="{% url 'hood' %}">Hoods <span class="sr-only">(current)</span></a>
         </li>
         {% if user.is_authenticated %}
         <li class="nav-item active">
-          <a class="nav-link " href="/admin">Admin</a>
+          <a class="nav-link text-dark " href="/admin">Admin</a>
         </li>
         {%else%}
         <li class="nav-item active">
@@ -42,13 +42,18 @@
       <a class="nav-link text-dark prof" href="/profile" >
 
           {% if user.is_authenticated %}
-          <img src="{{user.profile.profile_photo.url}}" alt="" style="border-radius: 50%; width: 30%; height: auto%;"> &nbsp; <span class="text-white">{{user.username|title}}</span>
+          <img src="{{user.profile.profile_photo.url}}" alt="" style="border-radius: 50%; width: 30%; height: auto%;"> &nbsp; <span class="text-dark">{{user.username|title}}</span>
           {%else%}
           <img src="https://st2.depositphotos.com/1104517/11965/v/600/depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg"
               class="card-img-top" alt="My profile picture" style="border-radius: 50%; width: 50%; height: auto;">
+          
           {% endif %} </a>
-    </div>
+  </div>
+
+
+  
   <style>
+
     .prof{
       
       margin-left:30%;
@@ -56,3 +61,5 @@
  
   </style>
   </nav>
+
+  
