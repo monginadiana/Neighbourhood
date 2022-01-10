@@ -25,14 +25,16 @@
                   <img src="{{neighbor.image.url}}" class="card-img-top " alt=" " height="300px" width="80px"/>
                         
                     <div class="card-body ">
-                        <p class="fade-item mb-2" style="font-size: 12px font-weight: bold ;">{{neighbor.neighbourHood_name|title}}</p>
+                      <div>
+                        <p class="">Description:{{neighbor.description}}</p>
+                      </div>
+                        <p class="fade-item mb-2" style="font-size: 12px font-weight: bold ;">Neig_Name:{{neighbor.neighbourHood_name|title}}</p>
                         <div class="d-flex justify-content-between location-date">
                             <div>
-                            <p class="">{{neighbor.location}}</p>
+                            <p class="">Location:{{neighbor.location}}</p>
                             </div>
-                            <div>
-                            <p class="">{{neighbor.description}}</p>
-                          </div>
+                            <br><br>
+                            
                           <div class=" pt-3 mr-8">
                             {% if request.user.profile.neighborhood == neighbor %}
                             <a    
