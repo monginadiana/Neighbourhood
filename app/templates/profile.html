@@ -18,8 +18,8 @@
   margin-left: 45%;
 }
 </style> 
-<div class="container-fluid " style="background-color:grey;">
-  <h2 class="text-center text-warning" style="font-size:bold; font-weight:800; font-style:italic;">My Profile</h2>
+<div class="container-fluid " style="background-color;">
+  <h2 class="text-center text-info" style="font-size:bold; font-weight:800; font-style:italic;">My Profile</h2>
         <div class="">
             <div class="text-center">
                 <div class="card">
@@ -47,13 +47,18 @@
             <div class=" ">
               <div class="let text-center">
                 {% if request.user is user %}  
-                <a href="{%url 'update_profile' user.id %}" style="color:black;font-size: 0.7em;" class="btn btn-warning btn-sm">
+                <a href="{%url 'update_profile' user.id %}" style="color:black;font-size: 0.7em;" class="btn btn-info btn-sm">
                   Edit Profile
                 </a>
               {% endif %}
-              <a href="{%url 'create_business'  %}" style="color:black;font-size: 0.7em;" class="btn btn-warning btn-sm text-center">
+              <a href="{%url 'create_business'  %}" style="color:black;font-size: 0.7em;" class="btn btn-info btn-sm text-center">
                 Create Business
               </a>
+              <a
+              href="{%url 'create_post'  %}" style="color: black; font-size: 0.7em"
+            class="btn btn-info btn-sm">
+              Create Post
+            </a>
             </div>
         
   
