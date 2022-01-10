@@ -6,7 +6,6 @@
     border-radius: 5px;
     padding: 5px 5px;
 
-    background-color:red;
     color: white;
     align-items: center;
 }
@@ -23,7 +22,7 @@
           {%for neighbor in hood%}
             <div class="col-md-12 col-md-6 col-lg-6 p-3" id="main" style="gap: 15px;">
                 <div class="card mb-4" id="">
-                  <img src="{{neighbor.image.url}}" class="card-img-top " alt=" " height="auto" width="100"/>
+                  <img src="{{neighbor.image.url}}" class="card-img-top " alt=" " height="300px" width="80px"/>
                         
                     <div class="card-body ">
                         <p class="fade-item mb-2" style="font-size: 12px font-weight: bold ;">{{neighbor.neighbourHood_name|title}}</p>
@@ -47,7 +46,7 @@
                             {% elif not request.user.profile.neighborhood %}
                             <a
                               href="{% url  'join_hood' neighbor.id %}"
-                              class="btn join black font-weight-bold btn-sm let"
+                              class="btn btn-sm btn-info  font-weight-bold btn-sm let"
                               >Join Hood</a>
                             {% endif %}
                           </div>
@@ -62,12 +61,8 @@
           </div>
 
         </div>
-        <a
-          href="{%url 'create_post'  %}" style="color: black; font-size: 0.7em"
-        class="btn btn-warning btn-sm">
-          Create Post
-        </a>
-        {% endblock %}
+      
+{% endblock %}
 
 
 
