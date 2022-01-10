@@ -1,5 +1,4 @@
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-warning ">
+<nav class="navbar navbar-expand-lg navbar-dark bg-info ">
     <a style="font-style:italics;"class="navbar-brand neig text-center text-dark" href="{% url 'index' %}">Neighbourhoods </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -46,8 +45,12 @@
           {%else%}
           <img src="https://st2.depositphotos.com/1104517/11965/v/600/depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg"
               class="card-img-top" alt="My profile picture" style="border-radius: 50%; width: 50%; height: auto;">
+              
           
           {% endif %} </a>
+        
+            <a class="nav-item text-dark" href="/logout/">logout</a>
+        
   </div>
 
 
