@@ -3,20 +3,20 @@
 {% load bootstrap4 %}
 {% block styles %}
 {{ block.super}}
-<link rel="stylesheet" href="{% static 'css/addProject.css' %}">
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
 {% endblock %}
-
 {% block content %}
-<div class="box">
-    <div class="text-center" style="background-image:url('https://raw.githubusercontent.com/Owiti-Charles/HoodWatch/master/static/images/bg.jpg'); font-family: 'Cookie', cursive;font-size: 15px; ">>
-    <div class="title">Kindly create a Neighbourhood</div>
+<br>
+<div class="container box" style="background-color:grey">
+    <div class="text-center" style=" font-family: 'Cookie', cursive;font-size: 15px; ">
+    <div class="title text-center" style ="font-size:bold; font-weight:800" >Kindly create a Neighbourhood</div>
     <hr>
-    <div class="guide">Please create Your Hood.</div>
+    <div class="guide " style ="font-size:bold; font-weight:800" >Please create Your Hood.</div>
     </div>
     <form action="{%url 'create_hood'%}" method="post" enctype="multipart/form-data">
         {%csrf_token%}    
         {% bootstrap_form hood_form%}
-        <input type="submit" class="btn btn-dark " value="Create Neighborhood">
+        <input type="submit" class="btn btn-info " value="Create Neighborhood">
     </form>
 </div>
 {% endblock %}
