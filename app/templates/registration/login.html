@@ -1,9 +1,7 @@
 {%extends "registration/base.html"%}
 {% load bootstrap4 %}
 {% block content %}
-<br>
-
-<div class="container-fluid" style="background-color:grey;font-style:'Libre Bodoni', sans-serif;">
+<div class="container-fluid" style="font-style:'Libre Bodoni', sans-serif;background-color:'grey'; background-image:url('https://raw.githubusercontent.com/Owiti-Charles/HoodWatch/master/static/images/bg.jpg'">
     <div class="row">
         <!-- Empty div -->
         <div class="col-md-4"></div>
@@ -11,29 +9,25 @@
             {% if form.errors %}
             <p> Password or Username is incorrect </p>
             {% endif %}
-            <div class="card mt-5">
+            <div class="card mt-3">
                 <div class="card-header">
-                    <h3 style="color:Orange; font-style:'Libre Bodoni', sans-serif; font-weight:800;" class="text-center">Sign In</h3>
+                    <h3 style="color:blue; font-style:'Libre Bodoni', sans-serif; font-weight:800;" class="text-center">Sign In</h3>
                 </div>
                 <div class="card-body">
-                    <form style="color:Orange; font-style:'Open Sans', sans-serif; font-weight:800;" action="/accounts/login/" method="post">
+                    <form style="color:blue; font-style:'Open Sans', sans-serif; font-weight:800;" action="/accounts/login/" method="post">
                         {% csrf_token %}
                         {% bootstrap_form form%}
 
                         <div class="form-group">
-                            <input style="color:Orange; font-style:'Libre Bodoni', sans-serif; font-weight:bold;"type="submit" class="btn btn-sm" value="Login">
+                            <input style="color:blue; font-style:'Libre Bodoni', sans-serif; font-weight:bold;"type="submit" class="btn btn-sm" value="Login">
                         </div>
                         <input type="hidden" name="next" value="{{next}}">
                     </form>
-                    <p  style= "font-weight:800"  class="mt-5">Don't Have an Account, <a style="color:Orange; font-style:'Libre Bodoni', sans-serif; font-weight:bold;"href="/accounts/register/" class="text-primary">Register</a></p>
+                    <p  style= "font-weight:800"  class="mt-5">Don't Have an Account, <a style="color:blue; font-style:'Libre Bodoni', sans-serif; font-weight:bold;"href="/accounts/register/" class="text-primary">Register</a></p>
                 </div>
             </div>
 
         </div>
-        <!-- empty div -->
-        <div class="col-md-4">
-        </div>
-        <br><br>
     </div>
 </div>
 
