@@ -1,12 +1,30 @@
 {% extends "base.html" %}
 {% block content %}
-<br><br><br><br>
-<div class="container-fluid">
-        <div class="row">
-            <div class="col-md-4">
+<br>
+<style>
+  .let{
+    border-radius: 15px;
+    padding: 5px 5px;
+    margin: 1rem;
+    color: white;
+    align-items: center;
+  
+
+}
+.card-img-top{
+  width:100px;
+  height:100px;
+  margin-top: 5px;
+  margin-left: 45%;
+}
+</style> 
+<div class="container-fluid " style="background-color:grey;">
+  <h2 class="text-center text-warning" style="font-size:bold; font-weight:800; font-style:italic;">My Profile</h2>
+        <div class="">
+            <div class="text-center">
                 <div class="card">
                     {% if profile.profile_photo %}
-                    <img src="{{profile.profile_photo.url}}" alt="" class="card-img-top">
+                    <img style="border-radius: 50%" src="{{profile.profile_photo.url}}" alt="" class="card-img-top">
                     {%else%}
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3aV6aq2LNho3SY8cDICGVEdRweW5u9IaZ_w&usqp=CAU"
                         class="card-img-top" alt="My profile picture">
@@ -15,34 +33,30 @@
                         <p style="font-size:bold; font-weight:800;text-transform:capitalize">Username:{{profile.user.username }}</p>
                         <p>
                             {% if profile.bio %}
-                            <P>Bio:{{ profile.bio }} </P>
+                            <P style="font-size:bold; font-weight:800">Bio:{{ profile.bio }} </P>
                             
                             {% else %}
                             <span class="text-danger">No about me</span>
                             {% endif %}
                         </p>
-                        <h6>Joined on: {{ user.date_joined }}</h6>
+                        <h6 style="font-size:bold; font-weight:800">Joined on: {{ user.date_joined }}</h6>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-4">
-            {% if request.user is user %}  
-              <a href="{%url 'update_profile' user.id %}" style="color:black;font-size: 0.7em;" class="btn btn-warning btn-sm">
-                Edit Profile
+          </div>
+            <div class=" ">
+              <div class="let text-center">
+                {% if request.user is user %}  
+                <a href="{%url 'update_profile' user.id %}" style="color:black;font-size: 0.7em;" class="btn btn-warning btn-sm">
+                  Edit Profile
+                </a>
+              {% endif %}
+              <a href="{%url 'create_business'  %}" style="color:black;font-size: 0.7em;" class="btn btn-warning btn-sm text-center">
+                Create Business
               </a>
-            {% endif %}
-      </div>
-      {% comment %} <div class="col-md-4">  
-          <a href="{%url 'create_hood' %}" style="color:black;font-size: 0.7em;" class="btn btn-warning btn-sm">
-            Create Hood
-          </a>
-  </div> {% endcomment %}
-  <a href="{%url 'create_business'  %}" style="color:black;font-size: 0.7em;" class="btn btn-warning btn-sm">
-    Create Business
-  </a>
-</div>
-
-
-
+            </div>
+        
+  
+  </div>
+  <br>
 {% endblock %}
