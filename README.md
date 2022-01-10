@@ -4,7 +4,7 @@
 
 ## Author 
 
-[Ondieki Diana MOngina](https://github.com/monginadiana)
+[Ondieki Diana Mongina](https://github.com/monginadiana)
 
 # Description 
 
@@ -41,7 +41,7 @@ https://github.com/monginadiana/Neighbourhood
 
 ##### Navigate into the folder and install requirements 
  bash
-cd Community-Watch, pip install -r requirements.txt
+cd HOOD254, pip install -r requirements.txt
 
 ##### Install and activate Virtual 
  bash
@@ -52,11 +52,10 @@ cd Community-Watch, pip install -r requirements.txt
  pip install -r requirements.txt
 
 ##### Setup Database 
-  SetUp your database User,Password, Host then make migrate
- bash
-python manage.py makemigrations watch
- 
- Now Migrate
+SetUp your database User,Password, 
+Host then make migrate
+python manage.py makemigrations HOOD
+Migrate
  bash
  python manage.py migrate
 
